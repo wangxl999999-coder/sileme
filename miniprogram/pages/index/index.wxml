@@ -1,0 +1,105 @@
+<view class="container">
+  <view class="greeting-section">
+    <view class="greeting-text">
+      <view class="greeting-title">{{greetingText}}, {{userInfo.nickname || '朋友'}}</view>
+      <view class="greeting-subtitle">{{dateText}}</view>
+    </view>
+  </view>
+
+  <view class="checkin-card card">
+    <view class="checkin-circle {{hasCheckedInToday ? 'checked' : ''}}">
+      <view class="checkin-icon">
+        <text wx:if="{{hasCheckedInToday}}" class="iconfont">✓</text>
+        <text wx:else class="iconfont">✓</text>
+      </view>
+      <view class="checkin-text">{{checkInText}}</view>
+      <view wx:if="{{lastCheckInTime}}" class="checkin-time">{{lastCheckInTime}}</view>
+    </view>
+
+    <view class="streak-info">
+      <view class="streak-item">
+        <view class="streak-number">{{userInfo.checkInStreak || 0}}</view>
+        <view class="streak-label">连续签到</view>
+      </view>
+      <view class="streak-divider"></view>
+      <view class="streak-item">
+        <view class="streak-number">{{checkInStats.checkInCount || 0}}</view>
+        <view class="streak-label">本月签到</view>
+      </view>
+      <view class="streak-divider"></view>
+      <view class="streak-item">
+        <view class="streak-number">{{checkInStats.checkInRate || 0}}%</view>
+        <view class="streak-label">签到率</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="status-card card" wx:if="{{computedStatus}}">
+    <view class="status-header">
+      <view class="status-title">当前状态</view>
+      <view class="status-tag status-{{computedStatus}}">{{statusText}}</view>
+    </view>
+    <view class="status-desc">
+      <text wx:if="{{computedStatus === 'active'}}">状态良好，继续保持每日签到哦~</text>
+      <text wx:elif="{{computedStatus === 'warning'}}">已超过24小时未签到，请及时签到！</text>
+      <text wx:elif="{{computedStatus === 'timeout'}}">⚠️ 已超过48小时未签到，紧急联系人可能已收到通知</text>
+      <text wx:elif="{{computedStatus === 'sos'}}">🚨 您触发了SOS呼救</text>
+      <text wx:else>还没有签到记录</text>
+    </view>
+    <view wx:if="{{nextCheckInTime}}" class="next-checkin">
+      下次提醒: {{nextCheckInTime}}
+    </view>
+  </view>
+
+  <view class="sos-section">
+    <view class="sos-title">紧急呼救</view>
+    <view class="sos-desc">遇到紧急情况时，长按下方按钮通知紧急联系人</view>
+    <view 
+      class="sos-button {{pressing ? 'pressing' : ''}}"
+      bindtouchstart="onSOSPressStart"
+      bindtouchend="onSOSPressEnd"
+      bindtouchcancel="onSOSPressEnd"
+      bindlongpress="onTriggerSOS"
+    >
+      <view class="sos-icon">📞</view>
+      <view class="sos-text" wx:if="{{!pressing}}">长按3秒呼救</view>
+      <view class="sos-text" wx:else>松开发送</view>
+      <view class="sos-press-hint" wx:if="{{pressing}}">
+        <view class="press-progress" style="width: {{pressProgress}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToHistory">
+      <view class="action-icon">📅</view>
+      <view class="action-text">签到记录</view>
+    </view>
+    <view class="action-item" bindtap="goToContacts">
+      <view class="action-icon">👥</view>
+      <view class="action-text">紧急联系人</view>
+    </view>
+    <view class="action-item" bindtap="goToProfile">
+      <view class="action-icon">⚙️</view>
+      <view class="action-text">设置</view>
+    </view>
+  </view>
+
+  <view class="calendar-section card" wx:if="{{calendarData.length > 0}}">
+    <view class="section-title">最近签到</view>
+    <view class="calendar-grid">
+      <view 
+        wx:for="{{calendarData}}" 
+        wx:key="date"
+        class="calendar-day {{item.checkedIn ? 'checked' : ''}}"
+      >
+        <view class="calendar-dot"></view>
+        <view class="calendar-date">{{item.day}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="privacy-tip">
+    <text>🔒 注重隐私保护 · 不定位 · 不监控</text>
+  </view>
+</view>

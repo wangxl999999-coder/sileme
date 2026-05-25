@@ -1,0 +1,80 @@
+<view class="container">
+  <view class="profile-header">
+    <view class="user-avatar">{{userInfo.nickname ? userInfo.nickname.charAt(0) : '用'}}</view>
+    <view class="user-info">
+      <view class="user-name">{{userInfo.nickname || '微信用户'}}</view>
+      <view class="user-status">
+        <view class="status-tag status-{{computedStatus}}">{{statusText}}</view>
+      </view>
+    </view>
+    <view class="edit-btn" bindtap="editProfile">
+      <text>编辑</text>
+    </view>
+  </view>
+
+  <view class="menu-card">
+    <view class="menu-item" bindtap="goToHistory">
+      <view class="menu-icon">📅</view>
+      <view class="menu-text">签到记录</view>
+      <view class="menu-arrow">›</view>
+    </view>
+    <view class="menu-item" bindtap="goToContacts">
+      <view class="menu-icon">👥</view>
+      <view class="menu-text">紧急联系人</view>
+      <view class="menu-badge" wx:if="{{contactCount > 0}}">{{contactCount}}</view>
+      <view class="menu-arrow">›</view>
+    </view>
+    <view class="menu-item" bindtap="goToSOSHistory">
+      <view class="menu-icon">🚨</view>
+      <view class="menu-text">SOS记录</view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <view class="menu-card">
+    <view class="menu-item" bindtap="goToManagedUsers" wx:if="{{hasManagedUsers || userInfo.isAdmin}}">
+      <view class="menu-icon">👨‍👩‍👧</view>
+      <view class="menu-text">我的家人</view>
+      <view class="menu-arrow">›</view>
+    </view>
+    <view class="menu-item" bindtap="goToAdmin" wx:if="{{userInfo.isAdmin}}">
+      <view class="menu-icon">⚙️</view>
+      <view class="menu-text">管理后台</view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <view class="menu-card">
+    <view class="menu-item" bindtap="testNotification">
+      <view class="menu-icon">📱</view>
+      <view class="menu-text">测试通知</view>
+      <view class="menu-arrow">›</view>
+    </view>
+    <view class="menu-item" bindtap="goToAbout">
+      <view class="menu-icon">ℹ️</view>
+      <view class="menu-text">关于我们</view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <view class="privacy-card card">
+    <view class="privacy-title">🔒 隐私保护声明</view>
+    <view class="privacy-text">
+      我们高度重视您的隐私安全。本应用承诺：
+    </view>
+    <view class="privacy-item">• 不收集、不存储您的位置信息</view>
+    <view class="privacy-item">• 不进行任何行为监控</view>
+    <view class="privacy-item">• 不向第三方出售或泄露您的个人信息</view>
+    <view class="privacy-item">• 紧急联系人信息仅用于您设置的通知用途</view>
+  </view>
+
+  <view class="logout-section">
+    <button class="btn-outline logout-btn" bindtap="logout" wx:if="{{userInfo.phone}}">
+      退出登录
+    </button>
+  </view>
+
+  <view class="version-info">
+    版本 v1.0.0
+  </view>
+</view>

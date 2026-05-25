@@ -1,0 +1,133 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">{{isEdit ? '编辑联系人' : '添加联系人'}}</view>
+    <view class="page-subtitle">请填写真实信息，确保紧急情况下能联系到</view>
+  </view>
+
+  <view class="form-card card">
+    <view class="form-item">
+      <view class="form-label">联系人姓名 <text class="required">*</text></view>
+      <input 
+        class="form-input" 
+        placeholder="请输入姓名"
+        value="{{form.name}}"
+        bindinput="onInput"
+        data-field="name"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">手机号码 <text class="required">*</text></view>
+      <input 
+        class="form-input" 
+        type="number"
+        placeholder="请输入手机号"
+        value="{{form.phone}}"
+        bindinput="onInput"
+        data-field="phone"
+        maxlength="11"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">与您的关系</view>
+      <view class="relationship-grid">
+        <view 
+          wx:for="{{relationships}}" 
+          wx:key="value"
+          class="relationship-item {{form.relationship === item.value ? 'active' : ''}}"
+          bindtap="selectRelationship"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">优先级</view>
+      <view class="priority-desc">数字越大，越先被通知</view>
+      <view class="priority-slider">
+        <slider 
+          min="1" 
+          max="10" 
+          step="1" 
+          value="{{form.priority}}"
+          show-value
+          activeColor="#ff6b6b"
+          backgroundColor="#e0e0e0"
+          block-size="28"
+          bindchange="onPriorityChange"
+        />
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">通知方式</view>
+      <view class="notify-options">
+        <view class="notify-option">
+          <view class="notify-text">
+            <view class="notify-title">短信通知</view>
+            <view class="notify-desc">发送提醒短信（推荐）</view>
+          </view>
+          <switch 
+            checked="{{form.notifyMethods.sms}}" 
+            color="#ff6b6b"
+            bindchange="onNotifyMethodChange"
+            data-method="sms"
+          />
+        </view>
+        <view class="notify-option">
+          <view class="notify-text">
+            <view class="notify-title">电话通知</view>
+            <view class="notify-desc">语音电话提醒</view>
+          </view>
+          <switch 
+            checked="{{form.notifyMethods.call}}" 
+            color="#ff6b6b"
+            bindchange="onNotifyMethodChange"
+            data-method="call"
+          />
+        </view>
+        <view class="notify-option">
+          <view class="notify-text">
+            <view class="notify-title">微信通知</view>
+            <view class="notify-desc">发送微信消息</view>
+          </view>
+          <switch 
+            checked="{{form.notifyMethods.wechat}}" 
+            color="#ff6b6b"
+            bindchange="onNotifyMethodChange"
+            data-method="wechat"
+          />
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item" wx:if="{{isEdit}}">
+      <view class="form-label">启用状态</view>
+      <view class="notify-option">
+        <view class="notify-text">
+          <view class="notify-title">启用该联系人</view>
+          <view class="notify-desc">关闭后将不再向该联系人发送通知</view>
+        </view>
+        <switch 
+          checked="{{form.enabled}}" 
+          color="#ff6b6b"
+          bindchange="onEnabledChange"
+        />
+      </view>
+    </view>
+  </view>
+
+  <view class="actions safe-bottom">
+    <button 
+      class="btn-primary save-btn" 
+      bindtap="saveContact"
+      disabled="{{saving}}"
+    >
+      {{saving ? '保存中...' : '保存'}}
+    </button>
+  </view>
+</view>

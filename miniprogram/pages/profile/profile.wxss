@@ -1,0 +1,130 @@
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 60rpx 32rpx 48rpx;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+  margin: -32rpx -32rpx 32rpx;
+  color: #fff;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 48rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.user-status .status-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.edit-btn {
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 100rpx;
+  font-size: 26rpx;
+}
+
+.menu-card {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-badge {
+  background: #ff4d4f;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 100rpx;
+  margin-right: 12rpx;
+  min-width: 32rpx;
+  text-align: center;
+}
+
+.menu-arrow {
+  font-size: 32rpx;
+  color: #ccc;
+}
+
+.privacy-card {
+  background: #f0f9ff;
+  border: 1rpx solid #bae7ff;
+  margin-top: 32rpx;
+}
+
+.privacy-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #096dd9;
+  margin-bottom: 16rpx;
+}
+
+.privacy-text {
+  font-size: 26rpx;
+  color: #0050b3;
+  margin-bottom: 12rpx;
+}
+
+.privacy-item {
+  font-size: 24rpx;
+  color: #0050b3;
+  line-height: 2;
+}
+
+.logout-section {
+  margin-top: 48rpx;
+}
+
+.logout-btn {
+  width: 100%;
+}
+
+.version-info {
+  text-align: center;
+  color: #ccc;
+  font-size: 24rpx;
+  padding: 48rpx 0;
+}

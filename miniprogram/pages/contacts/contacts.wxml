@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">紧急联系人</view>
+    <view class="page-subtitle">添加后，异常情况将自动通知他们</view>
+  </view>
+
+  <view wx:if="{{contacts.length > 0}}" class="contacts-list">
+    <view 
+      wx:for="{{contacts}}" 
+      wx:key="_id"
+      class="contact-item card"
+    >
+      <view class="contact-info">
+        <view class="contact-avatar">{{item.name.charAt(0)}}</view>
+        <view class="contact-detail">
+          <view class="contact-name">
+            {{item.name}}
+            <view class="priority-tag" wx:if="{{item.priority > 1}}">
+              优先×{{item.priority}}
+            </view>
+            <view class="status-tag status-active" wx:if="{{item.enabled}}">已启用</view>
+            <view class="status-tag status-never" wx:else>已停用</view>
+          </view>
+          <view class="contact-phone">{{item.phone}}</view>
+          <view class="contact-meta">
+            <text class="relationship">{{getRelationshipText(item.relationship)}}</text>
+            <text class="dot">·</text>
+            <text class="notify-methods">
+              {{item.notifyMethods.sms ? '短信' : ''}}
+              {{item.notifyMethods.call ? ' 电话' : ''}}
+              {{item.notifyMethods.wechat ? ' 微信' : ''}}
+            </text>
+          </view>
+          <view wx:if="{{item.lastNotified}}" class="last-notified">
+            上次通知: {{formatTime(item.lastNotified)}}
+          </view>
+        </view>
+      </view>
+      
+      <view class="contact-actions">
+        <view class="action-btn edit" bindtap="editContact" data-id="{{item._id}}">
+          <text>编辑</text>
+        </view>
+        <view class="action-btn test" bindtap="testNotify" data-id="{{item._id}}">
+          <text>测试</text>
+        </view>
+        <view class="action-btn delete" bindtap="deleteContact" data-id="{{item._id}}" data-name="{{item.name}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-state">
+    <view class="empty-icon">👥</view>
+    <view class="empty-title">还没有添加紧急联系人</view>
+    <view class="empty-desc">添加后，当您超过48小时未签到时<br/>将自动发送短信通知他们</view>
+  </view>
+
+  <view class="tips-card card">
+    <view class="tips-title">📋 温馨提示</view>
+    <view class="tips-item">• 可添加多位紧急联系人，按优先级顺序通知</view>
+    <view class="tips-item">• 连续48小时未签到，系统将自动发送提醒短信</view>
+    <view class="tips-item">• 短信内容：我是X，我已经连续多天没有活动了，请检查下我的状态</view>
+    <view class="tips-item">• 建议定期测试通知功能是否正常</view>
+  </view>
+
+  <view class="add-section safe-bottom">
+    <button class="btn-primary add-btn" bindtap="addContact">
+      + 添加紧急联系人
+    </button>
+  </view>
+</view>

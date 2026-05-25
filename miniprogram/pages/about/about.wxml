@@ -1,0 +1,88 @@
+<view class="container">
+  <view class="about-header">
+    <view class="logo">📱</view>
+    <view class="app-name">死了么</view>
+    <view class="app-slogan">每日签到 · 报平安</view>
+    <view class="app-version">版本 v1.0.0</view>
+  </view>
+
+  <view class="section card">
+    <view class="section-title">什么是「死了么」？</view>
+    <view class="section-content">
+      「死了么」是一款关爱独居老人的安全守护应用。通过每日签到机制，
+      让家人及时了解老人的平安状态。当老人连续48小时未签到时，
+      系统将自动向紧急联系人发送短信提醒。
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="section-title">核心功能</view>
+    <view class="feature-list">
+      <view class="feature-item">
+        <view class="feature-icon">✓</view>
+        <view class="feature-text">
+          <view class="feature-name">极简签到</view>
+          <view class="feature-desc">打开小程序自动签到，无需繁琐操作</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">⏰</view>
+        <view class="feature-text">
+          <view class="feature-name">超时提醒</view>
+          <view class="feature-desc">48小时未签到自动通知紧急联系人</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">🚨</view>
+        <view class="feature-text">
+          <view class="feature-name">SOS一键呼救</view>
+          <view class="feature-desc">紧急情况一键通知所有联系人</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">👨‍👩‍👧</view>
+        <view class="feature-text">
+          <view class="feature-name">家人管理</view>
+          <view class="feature-desc">子女可远程查看老人签到状态</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">🔒</view>
+        <view class="feature-text">
+          <view class="feature-name">隐私保护</view>
+          <view class="feature-desc">不定位、不监控，保护用户隐私</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="section-title">短信通知说明</view>
+    <view class="section-content">
+      当您超过48小时未签到时，系统将自动向您设置的紧急联系人发送短信：
+    </view>
+    <view class="sms-example">
+      「我是X，我已经连续多天没有活动了，请检查下我的状态。」
+    </view>
+    <view class="section-tip">
+      * X为您在小程序中设置的昵称
+    </view>
+  </view>
+
+  <view class="section card">
+    <view class="section-title">隐私保护</view>
+    <view class="section-content">
+      我们承诺严格保护用户隐私：
+    </view>
+    <view class="privacy-list">
+      <view class="privacy-item">• 不会收集或存储您的位置信息</view>
+      <view class="privacy-item">• 不会进行任何形式的行为监控</view>
+      <view class="privacy-item">• 紧急联系人信息仅用于通知用途</view>
+      <view class="privacy-item">• 所有数据加密存储，保障安全</view>
+    </view>
+  </view>
+
+  <view class="copyright">
+    © 2024 死了么 All Rights Reserved
+  </view>
+</view>
