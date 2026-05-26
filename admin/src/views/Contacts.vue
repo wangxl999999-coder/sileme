@@ -136,7 +136,7 @@
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ElMessage, ElMessageBox, type FormInstance, type FormRules } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import request from '../utils/request'
 import dayjs from 'dayjs'
 
@@ -151,7 +151,7 @@ const isEdit = ref(false)
 const editId = ref('')
 const user = ref(null)
 const contacts = ref([])
-const contactFormRef = ref<FormInstance>()
+const contactFormRef = ref(null)
 
 const contactForm = reactive({
   name: '',
@@ -166,7 +166,7 @@ const contactForm = reactive({
   enabled: true
 })
 
-const contactRules: FormRules = {
+const contactRules = {
   name: [{ required: true, message: '请输入联系人姓名', trigger: 'blur' }],
   phone: [
     { required: true, message: '请输入手机号', trigger: 'blur' },

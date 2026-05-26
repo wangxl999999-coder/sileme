@@ -256,6 +256,10 @@ Page({
     wx.switchTab({ url: '/pages/profile/profile' });
   },
 
+  goToLogin() {
+    wx.navigateTo({ url: '/pages/login/login' });
+  },
+
   buildCalendarData(calendar) {
     const days = ['日', '一', '二', '三', '四', '五', '六'];
     return calendar.map(item => {

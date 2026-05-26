@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="logo-section">
+    <view class="logo">❤️</view>
+    <view class="app-name">死了么</view>
+    <view class="app-desc">每日签到报平安</view>
+  </view>
+
+  <view class="form-section">
+    <view class="form-item">
+      <input 
+        class="form-input" 
+        type="number" 
+        placeholder="请输入手机号" 
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+    
+    <view class="form-item">
+      <input 
+        class="form-input" 
+        type="password" 
+        placeholder="请输入密码" 
+        value="{{password}}"
+        bindinput="onPasswordInput"
+      />
+    </view>
+
+    <button class="btn-primary login-btn" bindtap="login" disabled="{{loading}}">
+      {{loading ? '登录中...' : '登录'}}
+    </button>
+
+    <view class="demo-accounts">
+      <view class="demo-title">测试账号</view>
+      <view class="demo-item">管理员: 13800138000 / 123456</view>
+      <view class="demo-item">普通用户: 13900139000 / 123456</view>
+    </view>
+  </view>
+</view>

@@ -1,12 +1,20 @@
 <view class="container">
-  <view class="greeting-section">
+  <view class="login-section card" wx:if="{{!userInfo.phone}}">
+    <view class="login-title">欢迎使用死了么</view>
+    <view class="login-desc">请先登录以使用全部功能</view>
+    <button class="btn-primary login-btn" bindtap="goToLogin">
+      立即登录
+    </button>
+  </view>
+
+  <view class="greeting-section" wx:if="{{userInfo.phone}}">
     <view class="greeting-text">
       <view class="greeting-title">{{greetingText}}, {{userInfo.nickname || '朋友'}}</view>
       <view class="greeting-subtitle">{{dateText}}</view>
     </view>
   </view>
 
-  <view class="checkin-card card">
+  <view class="checkin-card card" wx:if="{{userInfo.phone}}">
     <view class="checkin-circle {{hasCheckedInToday ? 'checked' : ''}}">
       <view class="checkin-icon">
         <text wx:if="{{hasCheckedInToday}}" class="iconfont">✓</text>
@@ -34,7 +42,7 @@
     </view>
   </view>
 
-  <view class="status-card card" wx:if="{{computedStatus}}">
+  <view class="status-card card" wx:if="{{userInfo.phone && computedStatus}}">
     <view class="status-header">
       <view class="status-title">当前状态</view>
       <view class="status-tag status-{{computedStatus}}">{{statusText}}</view>
@@ -51,7 +59,7 @@
     </view>
   </view>
 
-  <view class="sos-section">
+  <view class="sos-section" wx:if="{{userInfo.phone}}">
     <view class="sos-title">紧急呼救</view>
     <view class="sos-desc">遇到紧急情况时，长按下方按钮通知紧急联系人</view>
     <view 
@@ -70,7 +78,7 @@
     </view>
   </view>
 
-  <view class="quick-actions">
+  <view class="quick-actions" wx:if="{{userInfo.phone}}">
     <view class="action-item" bindtap="goToHistory">
       <view class="action-icon">📅</view>
       <view class="action-text">签到记录</view>
@@ -85,7 +93,7 @@
     </view>
   </view>
 
-  <view class="calendar-section card" wx:if="{{calendarData.length > 0}}">
+  <view class="calendar-section card" wx:if="{{userInfo.phone && calendarData.length > 0}}">
     <view class="section-title">最近签到</view>
     <view class="calendar-grid">
       <view 
