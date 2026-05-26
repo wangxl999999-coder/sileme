@@ -10,7 +10,10 @@
   "scripts": {
     "dev": "cd server && npm run dev",
     "build": "cd admin && npm run build",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "init": "cd server && npm run init",
+    "cron": "cd server && npm run cron",
+    "dev:admin": "cd admin && npm run dev"
   },
   "keywords": ["wechat-miniprogram", "safety-check", "elderly-care"],
   "author": "",

@@ -16,8 +16,6 @@ async function checkInactiveUsers() {
   console.log(`超时阈值: ${INACTIVE_THRESHOLD_HOURS}小时`);
 
   try {
-    await connectDB();
-
     const thresholdTime = moment()
       .subtract(INACTIVE_THRESHOLD_HOURS, 'hours')
       .toDate();
@@ -125,8 +123,13 @@ async function checkInactiveUsers() {
 
   } catch (error) {
     console.error('❌ 检测不活跃用户失败:', error);
-    process.exit(1);
-  } finally {
+    if (require.main === module) {
+      process.exit(1);
+    }
+    throw error;
+  }
+
+  if (require.main === module) {
     await mongoose.connection.close();
     console.log('数据库连接已关闭');
     process.exit(0);
@@ -134,7 +137,12 @@ async function checkInactiveUsers() {
 }
 
 if (require.main === module) {
-  checkInactiveUsers();
+  connectDB().then(() => {
+    checkInactiveUsers();
+  }).catch(err => {
+    console.error('❌ 数据库连接失败:', err);
+    process.exit(1);
+  });
 }
 
 module.exports = checkInactiveUsers;
