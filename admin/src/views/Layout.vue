@@ -70,6 +70,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessageBox } from 'element-plus'
+import { DataBoard, User, Bell, Message, ArrowDown } from '@element-plus/icons-vue'
 import { useUserStore } from '../stores/user'
 
 const route = useRoute()
